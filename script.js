@@ -28,8 +28,17 @@ function classAdder(addClass){
 }
 listItemsLocation.addEventListener('dblclick', classAdder)
 // 10 - Adicione um botão com id="apaga-tudo" que quando clicado deve apagar todos os itens da lista
-const removeButton = document.querySelector('#apaga-tudo')
-removeButton.addEventListener('click', lineRemover)
+const removeAllButton = document.querySelector('#apaga-tudo')
+removeAllButton.addEventListener('click', lineRemover)
 function lineRemover() {
     myList.innerHTML = '';
 }
+// 11 - Adicione um botão com id="remover-finalizados" que quando clicado remove somente os elementos finalizados da sua lista
+const endedTasks = document.getElementById('remover-finalizados')
+function removeEndedTasks(){
+    let toRemove = document.querySelectorAll('.completed')
+    for (let y = 0; y < toRemove.length; y += 1){
+        toRemove[y].remove()
+    }
+}   
+endedTasks.addEventListener('click', removeEndedTasks)
