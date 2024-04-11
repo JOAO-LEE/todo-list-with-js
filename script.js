@@ -1,7 +1,6 @@
 const addButton = document.querySelector('#criar-tarefa');
 const myList = document.querySelector('ol');
 const writingBlock = document.querySelector('input');
-
 // 6 - Ordene os itens da lista de tarefas por ordem de criação
 function insertTasks() {
     let lines = document.createElement('li');
@@ -15,16 +14,15 @@ addButton.addEventListener('click', insertTasks)
 const listItemsLocation = document.getElementById('lista-tarefas');
 function changeBackgroundItems(event) {
     const lines = listItemsLocation.children
-    for (let x = 0; x < lines.length; x +=1){
+    for (let x = 0; x < lines.length; x += 1){
         lines[x] = lines[x].style.backgroundColor = null; 
     }
   event.target.style.background = 'grey';
 }
 listItemsLocation.addEventListener('click', changeBackgroundItems)
 // 9 - Clicar duas vezes em um item, faz com que ele seja riscado, indicando que foi completo. Deve ser possível desfazer essa ação clicando novamente duas vezes no item
-function classAdder(addClass){
-    addClass.target.classList.toggle("completed")
-
+function classAdder(addClass) {
+    addClass.target.classList.toggle('completed')
 }
 listItemsLocation.addEventListener('dblclick', classAdder)
 // 10 - Adicione um botão com id="apaga-tudo" que quando clicado deve apagar todos os itens da lista
@@ -35,10 +33,20 @@ function lineRemover() {
 }
 // 11 - Adicione um botão com id="remover-finalizados" que quando clicado remove somente os elementos finalizados da sua lista
 const endedTasks = document.getElementById('remover-finalizados')
-function removeEndedTasks(){
+function removeEndedTasks() {
     let toRemove = document.querySelectorAll('.completed')
     for (let y = 0; y < toRemove.length; y += 1){
         toRemove[y].remove()
     }
 }   
 endedTasks.addEventListener('click', removeEndedTasks)
+// 12 - Adicione um botão com id="salvar-tarefas" que salve o conteúdo da lista. Se você fechar e reabrir a página, a lista deve continuar no estado em que estava
+const saveButton = document.getElementById('salvar-tarefas')
+function storagePurpose() {
+    const listContent = document.querySelectorAll('li');
+    for (let w = 0; w < listContent.length; w += 1) {
+    listContent[w] = listContent.innerHTML
+    }
+    localStorage.setItem('tarefa', listContent)
+}  
+saveButton.addEventListener('click', storagePurpose)
